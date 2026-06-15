@@ -22,6 +22,7 @@
         <span class="logo-tag">/ agent IA </span>
       </div>
       <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️ Mode Clair</button>
+      <button class="reset-chat-btn" onclick="resetChat()" id="resetBtn">🔄 Réinitialiser</button>
     </div>
     <div class="status-bar">
       <div class="status-dot"></div>
@@ -52,7 +53,7 @@
               <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Quelles sont les grandes dates historiques de l'Antiquité à nos jours ?">
                 <span class="s-icon">⏳</span> Frise Historique
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Quelle est la capitale du Japon et le plus haut sommet du monde ?">
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Quelle est la capitale du Japon et le plus haut sommet du monde ?" data-q="Géographie Mondiale">
                 <span class="s-icon">🗺️</span> Géographie Mondiale
               </button>
               <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Explique-moi ce qu'est la mitose cellulaire en SVT.">
@@ -62,7 +63,7 @@
 
             <span class="section-title">🔍 RECHERCHE &amp; ACTUALITÉS</span>
             <div class="suggestion-grid">
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Quelle est la météo à Paris et à New York en ce moment ?">
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Météo">
                 <span class="s-icon">🌤️</span> Météo Multi-villes
               </button>
               <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Quelles sont les dernières avancées sur les modèles LLM open-source ?">
@@ -124,10 +125,13 @@
       </div>
     </div>
 
-    <div class="trace-panel">
+    <div class="trace-panel" id="tracePanel">
       <div class="trace-header">
         <span class="trace-title">Console d'exécution de l'agent</span>
-        <button class="clear-btn" onclick="clearTrace()">[ clear ]</button>
+        <div>
+          <button class="clear-btn" onclick="clearTrace()">[ clear ]</button>
+          <button class="close-btn" onclick="closeTrace()" title="Fermer la console">&times;</button>
+        </div>
       </div>
       <div class="trace-body" id="traceBody">
         <div class="trace-empty" id="traceEmpty">
