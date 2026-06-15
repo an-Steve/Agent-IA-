@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent IA — CapG</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="2">
+          <polygon points="12,2 22,8 22,16 12,22 2,16 2,8"/>
+          <circle cx="12" cy="12" r="3" fill="#00E5FF" stroke="none"/>
+        </svg>
+      </div>
+      <div>
+        <span class="logo-name"> Agent IA CAPG</span>
+        <span class="logo-tag">/ agent IA </span>
+      </div>
+    </div>
+    <div class="status-bar">
+      <div class="status-dot"></div>
+      <span class="status-label">Système Opérationnel</span>
+      <span class="tool-count">6 outils activés</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="chat-panel">
+      <div class="messages" id="messages">
+        <div class="welcome" id="welcome">
+          <div class="welcome-orb">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#00E5FF" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <h2>Agent IA CapG</h2>
+          <p class="welcome-subtitle">Une interface d'agent avancée capable de planifier, chercher, coder et raisonner en autonomie.</p>
+          
+          <div class="suggestion-section">
+            <span class="section-title">🔍 RECHERCHE &amp; ACTUALITÉS</span>
+            <div class="suggestion-grid">
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Quelle est la météo à Paris et à New York en ce moment ?">
+                <span class="s-icon">🌤️</span> Météo Multi-villes
+              </button>
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Quelles sont les dernières avancées sur les modèles LLM open-source ?">
+                <span class="s-icon">🌍</span> Veille Techno IA
+              </button>
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Donne-moi les actualités économiques majeures et le taux EUR/USD.">
+                <span class="s-icon">💱</span> Finance &amp; Actu
+              </button>
+            </div>
+
+            <span class="section-title">💻 DÉVELOPPEMENT &amp; CODE</span>
+            <div class="suggestion-grid">
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Génère une fonction JavaScript pour trier un tableau d'objets par date.">
+                <span class="s-icon">⚡</span> Générateur de code
+              </button>
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Trouve le bug dans ce code : s'il n'y a pas d'utilisateurs, map() plante.">
+                <span class="s-icon">🐛</span> Correction de Bug
+              </button>
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Explique-moi l'architecture des Transformers et l'attention sélective.">
+                <span class="s-icon">🧠</span> Concepts Complexes
+              </button>
+            </div>
+
+            <span class="section-title">✍️ PRODUCTIVITÉ &amp; SYNTHÈSE</span>
+            <div class="suggestion-grid">
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Rédige un e-mail professionnel et formel pour annoncer un retard de livraison.">
+                <span class="s-icon">📧</span> Rédaction d'E-mail
+              </button>
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Fais-moi un plan détaillé pour rédiger un rapport de projet de fin d'études.">
+                <span class="s-icon">📋</span> Plan de Rapport
+              </button>
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Résume le texte suivant sous forme de 3 puces clés exploitables.">
+                <span class="s-icon">📝</span> Synthèse Flash
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <div class="input-row">
+          <div class="input-wrap">
+            <textarea id="userInput" rows="1" placeholder="Demandez n'importe quoi (recherche, code, analyse)..." onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+          </div>
+          <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0D0F14" stroke-width="2.5">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22,2 15,22 11,13 2,9"/>
+            </svg>
+          </button>
+        </div>
+        <div class="input-footer">
+          <div class="input-hint"><span>Enter</span> Envoyer · <span>Shift + Enter</span> Ligne</div>
+          <div class="credit-tag">Réalisé par <strong>ANTON NELCON Steve</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trace-panel">
+      <div class="trace-header">
+        <span class="trace-title">Console d'exécution de l'agent</span>
+        <button class="clear-btn" onclick="clearTrace()">[ clear ]</button>
+      </div>
+      <div class="trace-body" id="traceBody">
+        <div class="trace-empty" id="traceEmpty">
+          <svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="#6B7280" stroke-width="1.5">
+            <rect x="8" y="8" width="32" height="32" rx="4"/>
+            <line x1="16" y1="18" x2="32" y2="18"/>
+            <line x1="16" y1="24" x2="28" y2="24"/>
+            <line x1="16" y1="30" x2="24" y2="30"/>
+          </svg>
+          <p>En attente d'instructions...<br>L'arbre de pensée s'affichera ici.</p>
+        </div>
+      </div>
+      <div class="tools-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#00E5FF"></div>web_search</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#A78BFA"></div>summarize</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#10B981"></div>call_api</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#F59E0B"></div>reason</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#3B82F6"></div>write_code</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
