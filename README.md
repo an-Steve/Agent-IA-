@@ -1,4 +1,4 @@
-# ⬡ Système Agentic CapG (v2.5)
+# ⬡ Agent IA CapG 
 
 **CapG** est une interface d'agent IA avancée et connectée en temps réel. Grâce à une architecture asynchrone, cet agent est capable de planifier des tâches, de simuler des arbres de pensée complexes et d'interroger de véritables API mondiales ouvertes (sans clé d'authentification payante) pour fournir des données météorologiques et financières instantanées.
 
