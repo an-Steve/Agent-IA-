@@ -1,6 +1,5 @@
 /* ── Variables globales & Thèmes ── */
 :root {
-  /* Mode Sombre (Par défaut) */
   --bg: #0D0F14;
   --surface: #13161E;
   --border: #1E2230;
@@ -25,7 +24,6 @@
 }
 
 body.light-mode {
-  /* Mode Clair */
   --bg: #F8FAFC;
   --surface: #FFFFFF;
   --border: #E2E8F0;
@@ -94,7 +92,7 @@ header::after {
   font-size: 10px; color: var(--text-secondary); letter-spacing: 0.05em; text-transform: uppercase;
 }
 
-.theme-toggle, .reset-chat-btn {
+.theme-toggle, .lang-toggle, .reset-chat-btn {
   background: var(--border);
   border: 1px solid var(--border-bright);
   color: var(--text-primary);
@@ -106,12 +104,39 @@ header::after {
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   margin-left: 10px;
+  user-select: none;
 }
+
+/* Style spécifique et effet Hover Tech pour la langue */
+.lang-toggle {
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+.lang-toggle:hover {
+  border-color: var(--cyan, #00E5FF);
+  background: rgba(0, 229, 255, 0.08);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.lang-toggle:active {
+  transform: translateY(1px);
+}
+
 .theme-toggle:hover {
   border-color: var(--cyan);
   background: var(--border-bright);
+}
+
+.reset-chat-btn:hover {
+  border-color: var(--red);
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
 }
 .reset-chat-btn:hover {
   border-color: var(--red);
