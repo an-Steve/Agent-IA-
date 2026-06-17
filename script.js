@@ -16,6 +16,17 @@ const AI_BRAIN = {
   ]
 };
 
+function handleFile(input) {
+    const file = input.files[0];
+    if (file) {
+        alert(`Fichier détecté : ${file.name}. Lancement de l'analyse...`);
+        
+        // C'est ici que tu injecteras ta logique d'analyse (ex: envoi à ton API Python/Agent IA)
+        // const formData = new FormData();
+        // formData.append('file', file);
+        // fetch('/api/analyze', { method: 'POST', body: formData }) ...
+    }
+}
 
 // ==========================================
 // ─── NOUVEAUX OUTILS & APIS ENRICHIS ───
