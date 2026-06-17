@@ -297,3 +297,41 @@ body.light-mode .tool-summarize .tool-name { color: #6D28D9; }
 .thinking-trace .t-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); animation: bounce 1.2s infinite; }
 
 @media (max-width: 800px) { .trace-panel { display: none; } }
+/* Conteneur pour aligner la recherche et le bouton sur la même ligne */
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #fff; /* À adapter selon ton thème */
+    border: 1px solid #ccc;
+    border-radius: 24px;
+    padding: 5px 15px;
+    width: 100%;
+    max-width: 600px; /* Exemple de largeur */
+}
+
+/* Style de l'input texte (on retire ses bordures d'origine) */
+.search-bar {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Style du bouton trombone */
+.file-upload-btn {
+    cursor: pointer;
+    color: #5f6368; /* Couleur grise style Google */
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Effet au survol du bouton */
+.file-upload-btn:hover {
+    background-color: #f1f3f4;
+    color: #1a73e8; /* Change en bleu au survol */
+}
