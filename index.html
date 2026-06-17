@@ -22,12 +22,13 @@
         <span class="logo-tag">/ agent IA </span>
       </div>
       <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️ Mode Clair</button>
+      <button class="lang-toggle" onclick="toggleLang()" id="langBtn">🇫🇷 Français</button>
       <button class="reset-chat-btn" onclick="resetChat()" id="resetBtn">🔄 Réinitialiser</button>
     </div>
     <div class="status-bar">
       <div class="status-dot"></div>
-      <span class="status-label">Système Opérationnel</span>
-      <span class="tool-count">7 outils activés</span>
+      <span class="status-label" id="statusLabel">Système Opérationnel</span>
+      <span class="tool-count" id="toolCount">7 outils activés</span>
     </div>
   </header>
 
@@ -42,64 +43,64 @@
             </svg>
           </div>
           <h2>Agent IA CapG</h2>
-          <p class="welcome-subtitle">Une interface d'agent avancée capable de planifier, chercher, coder et raisonner en autonomie.</p>
+          <p class="welcome-subtitle" id="welcomeSubtitle">Une interface d'agent avancée capable de planifier, chercher, coder et raisonner en autonomie.</p>
           
           <div class="suggestion-section">
-            <span class="section-title">🎓 ENCYCLOPÉDIE &amp; SCIENCES</span>
+            <span class="section-title" id="titleSciences">🎓 ENCYCLOPÉDIE &amp; SCIENCES</span>
             <div class="suggestion-grid">
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Parle-moi des planètes du système solaire et de Jupiter.">
-                <span class="s-icon">🌌</span> Système Solaire
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnSolar" data-q-fr="Parle-moi des planètes du système solaire et de Jupiter." data-q-en="Tell me about the planets in the solar system and Jupiter.">
+                <span class="s-icon">🌌</span> <span class="btn-text">Système Solaire</span>
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Quelles sont les grandes dates historiques de l'Antiquité à nos jours ?">
-                <span class="s-icon">⏳</span> Frise Historique
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnHistory" data-q-fr="Quelles sont les grandes dates historiques de l'Antiquité à nos jours ?" data-q-en="What are the major historical dates from Antiquity to the present day?">
+                <span class="s-icon">⏳</span> <span class="btn-text">Frise Historique</span>
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Quelle est la capitale du Japon et le plus haut sommet du monde ?">
-                <span class="s-icon">🗺️</span> Géographie Mondiale
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnGeo" data-q-fr="Quelle est la capitale du Japon et le plus haut sommet du monde ?" data-q-en="What is the capital of Japan and the highest peak in the world?">
+                <span class="s-icon">🗺️</span> <span class="btn-text">Géographie Mondiale</span>
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Explique-moi ce qu'est la mitose cellulaire en SVT.">
-                <span class="s-icon">🌱</span> Biologie &amp; SVT
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnBio" data-q-fr="Explique-moi ce qu'est la mitose cellulaire en SVT." data-q-en="Explain to me what cellular mitosis is in biology.">
+                <span class="s-icon">🌱</span> <span class="btn-text">Biologie &amp; SVT</span>
               </button>
             </div>
 
-            <span class="section-title">🔍 RECHERCHE &amp; ACTUALITÉS</span>
+            <span class="section-title" id="titleSearch">🔍 RECHERCHE &amp; ACTUALITÉS</span>
             <div class="suggestion-grid">
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Météo">
-                <span class="s-icon">🌤️</span> Météo Multi-villes
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnWeather" data-q-fr="Météo" data-q-en="Weather">
+                <span class="s-icon">🌤️</span> <span class="btn-text">Météo Multi-villes</span>
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Quelles sont les dernières avancées sur les modèles LLM open-source ?">
-                <span class="s-icon">🌍</span> Veille Techno IA
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnLlm" data-q-fr="Quelles sont les dernières avancées sur les modèles LLM open-source ?" data-q-en="What are the latest advances in open-source LLM models?">
+                <span class="s-icon">🌍</span> <span class="btn-text">Veille Techno IA</span>
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Donne-moi les actualités économiques majeures et le taux EUR/USD.">
-                <span class="s-icon">💱</span> Finance &amp; Actu
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnFinance" data-q-fr="Donne-moi les actualités économiques majeures et le taux EUR/USD." data-q-en="Give me the major economic news and the EUR/USD rate.">
+                <span class="s-icon">💱</span> <span class="btn-text">Finance &amp; Actu</span>
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Combien font (150 + 250) * 4 / 2 ?">
-                <span class="s-icon">🔢</span> Calcul mathématique
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnMath" data-q-fr="2+2" data-q-en="2+2">
+                <span class="s-icon">🔢</span> <span class="btn-text">Calcul mathématique</span>
               </button>
             </div>
 
-            <span class="section-title">💻 DÉVELOPPEMENT &amp; CODE</span>
+            <span class="section-title" id="titleDev">💻 DÉVELOPPEMENT &amp; CODE</span>
             <div class="suggestion-grid">
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Génère une fonction JavaScript pour trier un tableau d'objets par date.">
-                <span class="s-icon">⚡</span> Générateur de code
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnCode" data-q-fr="Génère une fonction JavaScript pour trier un tableau d'objets par date." data-q-en="Generate a JavaScript function to sort an array of objects by date.">
+                <span class="s-icon">⚡</span> <span class="btn-text">Générateur de code</span>
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Trouve le bug dans ce code : s'il n'y a pas d'utilisateurs, map() plante.">
-                <span class="s-icon">🐛</span> Correction de Bug
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnBug" data-q-fr="Trouve le bug dans ce code : s'il n'y a pas d'utilisateurs, map() plante." data-q-en="Find the bug in this code: if there are no users, map() crashes.">
+                <span class="s-icon">🐛</span> <span class="btn-text">Correction de Bug</span>
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Explique-moi l'architecture des Transformers et l'attention sélective.">
-                <span class="s-icon">🧠</span> Concepts Complexes
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnTransformers" data-q-fr="Explique-moi l'architecture des Transformers et l'attention sélective." data-q-en="Explain the architecture of Transformers and selective attention to me.">
+                <span class="s-icon">🧠</span> <span class="btn-text">Concepts Complexes</span>
               </button>
             </div>
 
-            <span class="section-title">✍️ PRODUCTIVITÉ &amp; SYNTHÈSE</span>
+            <span class="section-title" id="titleProd">✍️ PRODUCTIVITÉ &amp; SYNTHÈSE</span>
             <div class="suggestion-grid">
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Rédige un e-mail professionnel et formel pour annoncer un retard de livraison.">
-                <span class="s-icon">📧</span> Rédaction d'E-mail
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnEmail" data-q-fr="Rédige un e-mail professionnel et formel pour annoncer un retard de livraison." data-q-en="Write a professional and formal email to announce a delivery delay.">
+                <span class="s-icon">📧</span> <span class="btn-text">Rédaction d'E-mail</span>
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Fais-moi un plan détaillé pour rédiger un rapport de projet de fin d'études.">
-                <span class="s-icon">📋</span> Plan de Rapport
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnReport" data-q-fr="Fais-moi un plan détaillé pour rédiger un rapport de projet de fin d'études." data-q-en="Make me a detailed plan to write a graduation project report.">
+                <span class="s-icon">📋</span> <span class="btn-text">Plan de Rapport</span>
               </button>
-              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" data-q="Résume le texte suivant sous forme de 3 puces clés exploitables.">
-                <span class="s-icon">📝</span> Synthèse Flash
+              <button class="suggestion-btn" onclick="suggest(this.dataset.q)" id="btnSummary" data-q-fr="Résume le texte suivant sous forme de 3 puces clés exploitables." data-q-en="Summarize the following text into 3 actionable key bullet points.">
+                <span class="s-icon">📝</span> <span class="btn-text">Synthèse Flash</span>
               </button>
             </div>
           </div>
@@ -109,7 +110,7 @@
       <div class="input-area">
         <div class="input-row">
           <div class="input-wrap">
-            <textarea id="userInput" rows="1" placeholder="Demandez n'importe quoi (recherche, code, analysis)..." onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+            <textarea id="userInput" rows="1" placeholder="Demandez n'importe quoi (recherche, code, analyse)..." onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
           </div>
           <button class="send-btn" id="sendBtn" onclick="sendMessage()">
             <svg viewBox="0 0 24 24" fill="none" stroke="#0D0F14" stroke-width="2.5">
@@ -119,7 +120,7 @@
           </button>
         </div>
         <div class="input-footer">
-          <div class="input-hint"><span>Enter</span> Envoyer · <span>Shift + Enter</span> Ligne</div>
+          <div class="input-hint" id="inputHint"><span>Enter</span> Envoyer · <span>Shift + Enter</span> Ligne</div>
           <div class="credit-tag">Réalisé par <strong>ANTON NELCON Steve</strong></div>
         </div>
       </div>
@@ -127,9 +128,9 @@
 
     <div class="trace-panel" id="tracePanel">
       <div class="trace-header">
-        <span class="trace-title">Console d'exécution de l'agent</span>
+        <span class="trace-title" id="traceTitle">Console d'exécution de l'agent</span>
         <div>
-          <button class="clear-btn" onclick="clearTrace()">[ clear ]</button>
+          <button class="clear-btn" onclick="clearTrace()" id="clearBtn">[ clear ]</button>
           <button class="close-btn" onclick="closeTrace()" title="Fermer la console">&times;</button>
         </div>
       </div>
@@ -141,7 +142,7 @@
             <line x1="16" y1="24" x2="28" y2="24"/>
             <line x1="16" y1="30" x2="24" y2="30"/>
           </svg>
-          <p>En attente d'instructions...<br>L'arbre de pensée s'affichera ici.</p>
+          <p id="traceEmptyText">En attente d'instructions...<br>L'arbre de pensée s'affichera ici.</p>
         </div>
       </div>
       <div class="tools-legend">
